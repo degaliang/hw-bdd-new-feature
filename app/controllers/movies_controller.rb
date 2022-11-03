@@ -41,7 +41,12 @@ class MoviesController < ApplicationController
   #### Part 1 ####
   # Write your show_by_director method here
   def show_by_director
-    # Your code here #
+    @movie = Movie.find(params[:id])
+    @movies = @movie.others_by_same_director
+    if @movies.empty?
+      flash[:notice] = "'#{@movie.title}' has no director info."
+      redirect_to movies_path
+    end
   end
 
   private

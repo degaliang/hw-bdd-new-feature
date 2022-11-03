@@ -17,5 +17,13 @@ RSpec.describe MoviesController, type: :controller do
 
   ##### Part 3 #####
   # Write your tests here
-  # describe "my feature" do
+  # describe "my feature" do DELETE /movies/:id
+  describe "Delete a movie" do
+    it "delete 'Iron Man'" do
+      movie = Movie.find_by(title: "Iron Man")
+      delete :destroy, :id => movie.id 
+      expect(Movie.where(:title => "Iron Man").empty?).to be true 
+    end
+
+  end
 end

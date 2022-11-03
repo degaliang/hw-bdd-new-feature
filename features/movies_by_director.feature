@@ -32,3 +32,12 @@ Scenario: can't find similar movies if we don't know director (sad path)
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
+
+Scenario: create a new movie
+  Given I am on the create new movie page
+  Then I fill in "Title" with "Tiantian's Life"
+  And I fill in "Director" with "Alex Liang"
+  And I press "Save Changes"
+  Then I should be on the home page
+  And I should see "Tiantian's Life"
+  And I should see "Tiantian's Life was successfully created."

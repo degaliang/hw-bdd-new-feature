@@ -21,9 +21,17 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1)) 
 
-    when /^the edit page for (.+)$/ then edit_movie_path(Movie.find_by($2))
+    when /^the edit page for "(.+)"$/
+      edit_movie_path(Movie.find_by(:title => $1))
 
-    when /^the details page for (.+)$/ then movie_path(Movie.find_by($2))
+    when /^the details page for "(.+)"$/
+      movie_path(Movie.find_by(:title => $1))
+    
+    when /^the Similar Movies page for "(.+)"$/
+      show_by_director_path(Movie.find_by(:title => $1))
+
+    when /^the create new movie page$/
+      new_movie_path
 
     else
       begin

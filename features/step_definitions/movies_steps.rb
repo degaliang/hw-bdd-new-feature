@@ -24,6 +24,12 @@ Then /I should see all the movies/ do
   end
 end
 
+Then /the director of "(.*)" should be "(.*)"/ do |title, director|
+  movie = Movie.find_by!(title: title)
+  movie_director = movie.director
+  expect(movie_director).to eq(director)
+end
+
 #### Part 2 ####
 # Write additional step here
 # Your code here
